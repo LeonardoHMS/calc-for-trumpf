@@ -19,9 +19,9 @@ Conexão direta com o sistema SAP para apontamento automático do tempo.
 Instalação
 Clone o repositório para o seu ambiente local:
 
-bash
-Copiar código
+```bash
 git clone https://github.com/LeonardoHMS/calc-for-trumpf.git
+```
 Navegue até o diretório do projeto:
 
 ```bash
