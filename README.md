@@ -16,7 +16,8 @@ Funcionalidades
 Cálculo automático do tempo necessário para cada peça produzida.
 Interface amigável para inserção dos dados de cada peça (dimensões, material, etc.).
 Conexão direta com o sistema SAP para apontamento automático do tempo.
-Instalação
+
+## Instalação
 Clone o repositório para o seu ambiente local:
 
 ```bash
