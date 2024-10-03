@@ -1,0 +1,833 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html lang="pt-BR">
+<!-- Desenvolvido por Leonardo Mantovani -->
+<!-- GitHub: https://github.com/LeonardoHMS -->
+<!-- Linkedin: https://www.linkedin.com/in/leonardohms/ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+    <link rel="shortcut icon" href="static/img/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css"
+        integrity="sha512-SgaqKKxJDQ/tAUAAXzvxZz33rmn7leYDYfBP+YoMRSENhf3zJyx3SBASt/OfeQwBHA1nxMis7mM3EV/oYT6Fdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css"
+        integrity="sha512-9YHSK59/rjvhtDcY/b+4rdnl0V4LPDWdkKceBl8ZLF5TB6745ml1AfluEU6dFWqwDw9lPvnauxFgpKvJqp7jiQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css"
+        integrity="sha512-yDUXOUWwbHH4ggxueDnC5vJv4tmfySpVdIcN1LksGZi8W8EVZv4uKGrQc0pVf66zS7LDhFJM7Zdeow1sw1/8Jw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@800&display=swap"
+        rel="stylesheet">
+    <title>Calculadora Puncionadeira</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-content-title">
+                <h1>Calculate for Trumpf | The Power of JavaScript <i class="fa-brands fa-js"></i></h1>
+            </div>
+            <div class="header-content-input">
+                <input type="search" id="inputEmbed" placeholder="Arquivo para analisar">
+                <button onclick="setEmbed()">Confirmar</button>
+                <button onclick="openEmbed()">Visualizar</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="fade" class="hide"></div>
+        <div id="modal" class="hide">
+            <div class="modal-header">
+                <button id="close-modal">Fechar</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="iframeDisplay" title="Programa"></iframe>
+            </div>
+        </div>
+        <p id="message-embed">&nbsp;</p>
+        <br>
+        <div class="main-content">
+            <div class="style-tabela">
+                <table id="tabela1">
+                    <thead>
+                        <tr class="header-table">
+                            <td class="header-column" colspan="3">Tempo programa(teórico)</td>
+                            <td id="time-program" class="not-edit">&nbsp;</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="header-column" colspan="3">Qde. Chapas</td>
+                            <td><input id="number-chapas" type="number" placeholder="0" min="1" class="td-input"></td>
+                        </tr>
+                        <tr>
+                            <td class="header-column" colspan="3">Tempo programa(teórico) total</td>
+                            <td id="time-program-tot" class="not-edit">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column">Item</td>
+                            <td class="header-column">Qde.(Uni)</td>
+                            <td class="header-column">Tempo(min)</td>
+                            <td class="header-column">Qde. Total(Uni)</td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">1</td>
+                            <td class="not-edit" id="qtd-un-1"></td>
+                            <td class="not-edit" id="time-un-1"></td>
+                            <td class="not-edit" id="qtd-un-tot-1"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">2</td>
+                            <td class="not-edit" id="qtd-un-2"></td>
+                            <td class="not-edit" id="time-un-2"></td>
+                            <td class="not-edit" id="qtd-un-tot-2"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">3</td>
+                            <td class="not-edit" id="qtd-un-3"></td>
+                            <td class="not-edit" id="time-un-3"></td>
+                            <td class="not-edit" id="qtd-un-tot-3"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">4</td>
+                            <td class="not-edit" id="qtd-un-4"></td>
+                            <td class="not-edit" id="time-un-4"></td>
+                            <td class="not-edit" id="qtd-un-tot-4"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">5</td>
+                            <td class="not-edit" id="qtd-un-5"></td>
+                            <td class="not-edit" id="time-un-5"></td>
+                            <td class="not-edit" id="qtd-un-tot-5"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">6</td>
+                            <td class="not-edit" id="qtd-un-6"></td>
+                            <td class="not-edit" id="time-un-6"></td>
+                            <td class="not-edit" id="qtd-un-tot-6"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">7</td>
+                            <td class="not-edit" id="qtd-un-7"></td>
+                            <td class="not-edit" id="time-un-7"></td>
+                            <td class="not-edit" id="qtd-un-tot-7"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">8</td>
+                            <td class="not-edit" id="qtd-un-8"></td>
+                            <td class="not-edit" id="time-un-8"></td>
+                            <td class="not-edit" id="qtd-un-tot-8"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">9</td>
+                            <td class="not-edit" id="qtd-un-9"></td>
+                            <td class="not-edit" id="time-un-9"></td>
+                            <td class="not-edit" id="qtd-un-tot-9"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">10</td>
+                            <td class="not-edit" id="qtd-un-10"></td>
+                            <td class="not-edit" id="time-un-10"></td>
+                            <td class="not-edit" id="qtd-un-tot-10"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">11</td>
+                            <td class="not-edit" id="qtd-un-11"></td>
+                            <td class="not-edit" id="time-un-11"></td>
+                            <td class="not-edit" id="qtd-un-tot-11"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">12</td>
+                            <td class="not-edit" id="qtd-un-12"></td>
+                            <td class="not-edit" id="time-un-12"></td>
+                            <td class="not-edit" id="qtd-un-tot-12"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">13</td>
+                            <td class="not-edit" id="qtd-un-13"></td>
+                            <td class="not-edit" id="time-un-13"></td>
+                            <td class="not-edit" id="qtd-un-tot-13"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">14</td>
+                            <td class="not-edit" id="qtd-un-14"></td>
+                            <td class="not-edit" id="time-un-14"></td>
+                            <td class="not-edit" id="qtd-un-tot-14"></td>
+                        </tr>
+                        <tr>
+                            <td class="not-edit">15</td>
+                            <td class="not-edit" id="qtd-un-15"></td>
+                            <td class="not-edit" id="time-un-15"></td>
+                            <td class="not-edit" id="qtd-un-tot-15"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="tabela2">
+                    <thead>
+                        <tr class="header-table">
+                            <td class="header-column" colspan="2">Real x Planejado</td>
+                            <td id="real-status" class="not-edit">&nbsp;</td>
+                            <td id="real-porc" class="not-edit">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column">Setup (min)</td>
+                            <td class="header-column" colspan="3">Tempo Real (Horas)</td>
+                        </tr>
+                        <tr>
+                            <td><input id="input-setup" type="text" class="td-input" placeholder="HH:MM:SS"></td>
+                            <td><input id="input-start" type="text" class="td-input" placeholder="HH:MM:SS"></td>
+                            <td><input id="input-end" type="text" class="td-input" placeholder="HH:MM:SS"></td>
+                            <td id="result-time" class="not-edit">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column">Setup(min)</td>
+                            <td class="header-column">Produção(min) </td>
+                            <td class="header-column">Início Atv.</td>
+                            <td class="header-column">Fim Atv.</td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-1" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-1" class="not-edit"></td>
+                            <td id="init-prod-1" class="not-edit"></td>
+                            <td id="end-prod-1" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-2" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-2" class="not-edit"></td>
+                            <td id="init-prod-2" class="not-edit"></td>
+                            <td id="end-prod-2" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-3" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-3" class="not-edit"></td>
+                            <td id="init-prod-3" class="not-edit"></td>
+                            <td id="end-prod-3" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-4" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-4" class="not-edit"></td>
+                            <td id="init-prod-4" class="not-edit"></td>
+                            <td id="end-prod-4" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-5" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-5" class="not-edit"></td>
+                            <td id="init-prod-5" class="not-edit"></td>
+                            <td id="end-prod-5" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-6" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-6" class="not-edit"></td>
+                            <td id="init-prod-6" class="not-edit"></td>
+                            <td id="end-prod-6" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-7" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-7" class="not-edit"></td>
+                            <td id="init-prod-7" class="not-edit"></td>
+                            <td id="end-prod-7" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-8" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-8" class="not-edit"></td>
+                            <td id="init-prod-8" class="not-edit"></td>
+                            <td id="end-prod-8" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-9" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-9" class="not-edit"></td>
+                            <td id="init-prod-9" class="not-edit"></td>
+                            <td id="end-prod-9" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-10" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-10" class="not-edit"></td>
+                            <td id="init-prod-10" class="not-edit"></td>
+                            <td id="end-prod-10" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-11" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-11" class="not-edit"></td>
+                            <td id="init-prod-11" class="not-edit"></td>
+                            <td id="end-prod-11" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-12" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-12" class="not-edit"></td>
+                            <td id="init-prod-12" class="not-edit"></td>
+                            <td id="end-prod-12" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-13" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-13" class="not-edit"></td>
+                            <td id="init-prod-13" class="not-edit"></td>
+                            <td id="end-prod-13" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-14" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-14" class="not-edit"></td>
+                            <td id="init-prod-14" class="not-edit"></td>
+                            <td id="end-prod-14" class="not-edit"></td>
+                        </tr>
+                        <tr>
+                            <td id="setup-min-15" class="not-edit">&nbsp;</td>
+                            <td id="prod-min-15" class="not-edit"></td>
+                            <td id="init-prod-15" class="not-edit"></td>
+                            <td id="end-prod-15" class="not-edit"></td>
+                        </tr>
+                    </thead>
+                </table>
+                <table id="tabela3">
+                    <thead>
+                        <tr class="header-table">
+                            <td class="header-column">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column">Refugo</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column">Qde(Uni)</td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-1" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-2" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-3" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-4" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-5" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-6" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-7" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-8" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-9" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-10" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-11" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-12" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-13" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-14" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="refugo-15" value="0" min="0" type="number" class="td-input" placeholder="0">
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+                <table id="tabela4">
+                    <thead>
+                        <tr class="header-table">
+                            <td class="header-column" colspan="9">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column" colspan="9">Ordem de produção 01</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column" colspan="9">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column">Qde. OP(Uni)</td>
+                            <td class="header-column">Qde. Ap. Outro prog.</td>
+                            <td class="header-column">Saldo</td>
+                            <td class="header-column">Qde. à apontar</td>
+                            <td class="header-column">Setup(Min)</td>
+                            <td class="header-column">Atv(Min)</td>
+                            <td class="header-column">Início</td>
+                            <td class="header-column">Fim</td>
+                            <td class="header-column">Falta Apontar</td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-1" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-1-other-1" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-1"></td>
+                            <td class="not-edit" id="op-1-apont-1"></td>
+                            <td class="not-edit" id="op-1-setup-1"></td>
+                            <td class="not-edit" id="op-1-atv-1"></td>
+                            <td class="not-edit" id="op-1-init-1"></td>
+                            <td class="not-edit" id="op-1-end-1"></td>
+                            <td class="not-edit" id="op-1-falta-1"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-2" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-1-other-2" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-2"></td>
+                            <td class="not-edit" id="op-1-apont-2"></td>
+                            <td class="not-edit" id="op-1-setup-2"></td>
+                            <td class="not-edit" id="op-1-atv-2"></td>
+                            <td class="not-edit" id="op-1-init-2"></td>
+                            <td class="not-edit" id="op-1-end-2"></td>
+                            <td class="not-edit" id="op-1-falta-2"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-3" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-1-other-3" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-3"></td>
+                            <td class="not-edit" id="op-1-apont-3"></td>
+                            <td class="not-edit" id="op-1-setup-3"></td>
+                            <td class="not-edit" id="op-1-atv-3"></td>
+                            <td class="not-edit" id="op-1-init-3"></td>
+                            <td class="not-edit" id="op-1-end-3"></td>
+                            <td class="not-edit" id="op-1-falta-3"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-4" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-1-other-4" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-4"></td>
+                            <td class="not-edit" id="op-1-apont-4"></td>
+                            <td class="not-edit" id="op-1-setup-4"></td>
+                            <td class="not-edit" id="op-1-atv-4"></td>
+                            <td class="not-edit" id="op-1-init-4"></td>
+                            <td class="not-edit" id="op-1-end-4"></td>
+                            <td class="not-edit" id="op-1-falta-4"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-5" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-1-other-5" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-5"></td>
+                            <td class="not-edit" id="op-1-apont-5"></td>
+                            <td class="not-edit" id="op-1-setup-5"></td>
+                            <td class="not-edit" id="op-1-atv-5"></td>
+                            <td class="not-edit" id="op-1-init-5"></td>
+                            <td class="not-edit" id="op-1-end-5"></td>
+                            <td class="not-edit" id="op-1-falta-5"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-6" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-1-other-6" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-6"></td>
+                            <td class="not-edit" id="op-1-apont-6"></td>
+                            <td class="not-edit" id="op-1-setup-6"></td>
+                            <td class="not-edit" id="op-1-atv-6"></td>
+                            <td class="not-edit" id="op-1-init-6"></td>
+                            <td class="not-edit" id="op-1-end-6"></td>
+                            <td class="not-edit" id="op-1-falta-6"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-7" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-1-other-7" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-7"></td>
+                            <td class="not-edit" id="op-1-apont-7"></td>
+                            <td class="not-edit" id="op-1-setup-7"></td>
+                            <td class="not-edit" id="op-1-atv-7"></td>
+                            <td class="not-edit" id="op-1-init-7"></td>
+                            <td class="not-edit" id="op-1-end-7"></td>
+                            <td class="not-edit" id="op-1-falta-7"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-8" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-1-other-8" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-8"></td>
+                            <td class="not-edit" id="op-1-apont-8"></td>
+                            <td class="not-edit" id="op-1-setup-8"></td>
+                            <td class="not-edit" id="op-1-atv-8"></td>
+                            <td class="not-edit" id="op-1-init-8"></td>
+                            <td class="not-edit" id="op-1-end-8"></td>
+                            <td class="not-edit" id="op-1-falta-8"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-9" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-1-other-9" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-9"></td>
+                            <td class="not-edit" id="op-1-apont-9"></td>
+                            <td class="not-edit" id="op-1-setup-9"></td>
+                            <td class="not-edit" id="op-1-atv-9"></td>
+                            <td class="not-edit" id="op-1-init-9"></td>
+                            <td class="not-edit" id="op-1-end-9"></td>
+                            <td class="not-edit" id="op-1-falta-9"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-10" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-1-other-10" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-10"></td>
+                            <td class="not-edit" id="op-1-apont-10"></td>
+                            <td class="not-edit" id="op-1-setup-10"></td>
+                            <td class="not-edit" id="op-1-atv-10"></td>
+                            <td class="not-edit" id="op-1-init-10"></td>
+                            <td class="not-edit" id="op-1-end-10"></td>
+                            <td class="not-edit" id="op-1-falta-10"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-11" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-1-other-11" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-11"></td>
+                            <td class="not-edit" id="op-1-apont-11"></td>
+                            <td class="not-edit" id="op-1-setup-11"></td>
+                            <td class="not-edit" id="op-1-atv-11"></td>
+                            <td class="not-edit" id="op-1-init-11"></td>
+                            <td class="not-edit" id="op-1-end-11"></td>
+                            <td class="not-edit" id="op-1-falta-11"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-12" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-1-other-12" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-12"></td>
+                            <td class="not-edit" id="op-1-apont-12"></td>
+                            <td class="not-edit" id="op-1-setup-12"></td>
+                            <td class="not-edit" id="op-1-atv-12"></td>
+                            <td class="not-edit" id="op-1-init-12"></td>
+                            <td class="not-edit" id="op-1-end-12"></td>
+                            <td class="not-edit" id="op-1-falta-12"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-13" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-1-other-13" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-13"></td>
+                            <td class="not-edit" id="op-1-apont-13"></td>
+                            <td class="not-edit" id="op-1-setup-13"></td>
+                            <td class="not-edit" id="op-1-atv-13"></td>
+                            <td class="not-edit" id="op-1-init-13"></td>
+                            <td class="not-edit" id="op-1-end-13"></td>
+                            <td class="not-edit" id="op-1-falta-13"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-14" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-1-other-14" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-14"></td>
+                            <td class="not-edit" id="op-1-apont-14"></td>
+                            <td class="not-edit" id="op-1-setup-14"></td>
+                            <td class="not-edit" id="op-1-atv-14"></td>
+                            <td class="not-edit" id="op-1-init-14"></td>
+                            <td class="not-edit" id="op-1-end-14"></td>
+                            <td class="not-edit" id="op-1-falta-14"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-1-qtd-15" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-1-other-15" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-1-rest-15"></td>
+                            <td class="not-edit" id="op-1-apont-15"></td>
+                            <td class="not-edit" id="op-1-setup-15"></td>
+                            <td class="not-edit" id="op-1-atv-15"></td>
+                            <td class="not-edit" id="op-1-init-15"></td>
+                            <td class="not-edit" id="op-1-end-15"></td>
+                            <td class="not-edit" id="op-1-falta-15"></td>
+                        </tr>
+                    </thead>
+                </table>
+                <table id="tabela5">
+                    <thead>
+                        <tr class="header-table">
+                            <td class="header-column" colspan="9">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column" colspan="9">Ordem de produção 02</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column" colspan="9">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="header-column">Qde. OP(Uni)</td>
+                            <td class="header-column">Qde. Ap. Outro prog.</td>
+                            <td class="header-column">Sobra op 1</td>
+                            <td class="header-column">Qde. à apontar</td>
+                            <td class="header-column">Setup(Min)</td>
+                            <td class="header-column">Atv(Min)</td>
+                            <td class="header-column">Início</td>
+                            <td class="header-column">Fim</td>
+                            <td class="header-column">Falta Apontar</td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-1" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-2-other-1" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-1"></td>
+                            <td class="not-edit" id="op-2-apont-1"></td>
+                            <td class="not-edit" id="op-2-setup-1"></td>
+                            <td class="not-edit" id="op-2-atv-1"></td>
+                            <td class="not-edit" id="op-2-init-1"></td>
+                            <td class="not-edit" id="op-2-end-1"></td>
+                            <td class="not-edit" id="op-2-falta-1"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-2" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-2-other-2" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-2"></td>
+                            <td class="not-edit" id="op-2-apont-2"></td>
+                            <td class="not-edit" id="op-2-setup-2"></td>
+                            <td class="not-edit" id="op-2-atv-2"></td>
+                            <td class="not-edit" id="op-2-init-2"></td>
+                            <td class="not-edit" id="op-2-end-2"></td>
+                            <td class="not-edit" id="op-2-falta-2"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-3" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-2-other-3" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-3"></td>
+                            <td class="not-edit" id="op-2-apont-3"></td>
+                            <td class="not-edit" id="op-2-setup-3"></td>
+                            <td class="not-edit" id="op-2-atv-3"></td>
+                            <td class="not-edit" id="op-2-init-3"></td>
+                            <td class="not-edit" id="op-2-end-3"></td>
+                            <td class="not-edit" id="op-2-falta-3"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-4" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-2-other-4" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-4"></td>
+                            <td class="not-edit" id="op-2-apont-4"></td>
+                            <td class="not-edit" id="op-2-setup-4"></td>
+                            <td class="not-edit" id="op-2-atv-4"></td>
+                            <td class="not-edit" id="op-2-init-4"></td>
+                            <td class="not-edit" id="op-2-end-4"></td>
+                            <td class="not-edit" id="op-2-falta-4"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-5" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-2-other-5" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-5"></td>
+                            <td class="not-edit" id="op-2-apont-5"></td>
+                            <td class="not-edit" id="op-2-setup-5"></td>
+                            <td class="not-edit" id="op-2-atv-5"></td>
+                            <td class="not-edit" id="op-2-init-5"></td>
+                            <td class="not-edit" id="op-2-end-5"></td>
+                            <td class="not-edit" id="op-2-falta-5"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-6" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-2-other-6" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-6"></td>
+                            <td class="not-edit" id="op-2-apont-6"></td>
+                            <td class="not-edit" id="op-2-setup-6"></td>
+                            <td class="not-edit" id="op-2-atv-6"></td>
+                            <td class="not-edit" id="op-2-init-6"></td>
+                            <td class="not-edit" id="op-2-end-6"></td>
+                            <td class="not-edit" id="op-2-falta-6"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-7" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-2-other-7" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-7"></td>
+                            <td class="not-edit" id="op-2-apont-7"></td>
+                            <td class="not-edit" id="op-2-setup-7"></td>
+                            <td class="not-edit" id="op-2-atv-7"></td>
+                            <td class="not-edit" id="op-2-init-7"></td>
+                            <td class="not-edit" id="op-2-end-7"></td>
+                            <td class="not-edit" id="op-2-falta-7"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-8" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-2-other-8" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-8"></td>
+                            <td class="not-edit" id="op-2-apont-8"></td>
+                            <td class="not-edit" id="op-2-setup-8"></td>
+                            <td class="not-edit" id="op-2-atv-8"></td>
+                            <td class="not-edit" id="op-2-init-8"></td>
+                            <td class="not-edit" id="op-2-end-8"></td>
+                            <td class="not-edit" id="op-2-falta-8"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-9" type="number" min="0" placeholder="0" value="0">
+                            </td>
+                            <td><input class="td-input" id="op-2-other-9" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-9"></td>
+                            <td class="not-edit" id="op-2-apont-9"></td>
+                            <td class="not-edit" id="op-2-setup-9"></td>
+                            <td class="not-edit" id="op-2-atv-9"></td>
+                            <td class="not-edit" id="op-2-init-9"></td>
+                            <td class="not-edit" id="op-2-end-9"></td>
+                            <td class="not-edit" id="op-2-falta-9"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-10" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-2-other-10" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-10"></td>
+                            <td class="not-edit" id="op-2-apont-10"></td>
+                            <td class="not-edit" id="op-2-setup-10"></td>
+                            <td class="not-edit" id="op-2-atv-10"></td>
+                            <td class="not-edit" id="op-2-init-10"></td>
+                            <td class="not-edit" id="op-2-end-10"></td>
+                            <td class="not-edit" id="op-2-falta-10"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-11" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-2-other-11" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-11"></td>
+                            <td class="not-edit" id="op-2-apont-11"></td>
+                            <td class="not-edit" id="op-2-setup-11"></td>
+                            <td class="not-edit" id="op-2-atv-11"></td>
+                            <td class="not-edit" id="op-2-init-11"></td>
+                            <td class="not-edit" id="op-2-end-11"></td>
+                            <td class="not-edit" id="op-2-falta-11"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-12" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-2-other-12" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-12"></td>
+                            <td class="not-edit" id="op-2-apont-12"></td>
+                            <td class="not-edit" id="op-2-setup-12"></td>
+                            <td class="not-edit" id="op-2-atv-12"></td>
+                            <td class="not-edit" id="op-2-init-12"></td>
+                            <td class="not-edit" id="op-2-end-12"></td>
+                            <td class="not-edit" id="op-2-falta-12"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-13" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-2-other-13" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-13"></td>
+                            <td class="not-edit" id="op-2-apont-13"></td>
+                            <td class="not-edit" id="op-2-setup-13"></td>
+                            <td class="not-edit" id="op-2-atv-13"></td>
+                            <td class="not-edit" id="op-2-init-13"></td>
+                            <td class="not-edit" id="op-2-end-13"></td>
+                            <td class="not-edit" id="op-2-falta-13"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-14" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-2-other-14" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-14"></td>
+                            <td class="not-edit" id="op-2-apont-14"></td>
+                            <td class="not-edit" id="op-2-setup-14"></td>
+                            <td class="not-edit" id="op-2-atv-14"></td>
+                            <td class="not-edit" id="op-2-init-14"></td>
+                            <td class="not-edit" id="op-2-end-14"></td>
+                            <td class="not-edit" id="op-2-falta-14"></td>
+                        </tr>
+                        <tr>
+                            <td><input class="td-input" id="op-2-qtd-15" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td><input class="td-input" id="op-2-other-15" type="number" min="0" placeholder="0"
+                                    value="0"></td>
+                            <td class="not-edit" id="op-2-rest-15"></td>
+                            <td class="not-edit" id="op-2-apont-15"></td>
+                            <td class="not-edit" id="op-2-setup-15"></td>
+                            <td class="not-edit" id="op-2-atv-15"></td>
+                            <td class="not-edit" id="op-2-init-15"></td>
+                            <td class="not-edit" id="op-2-end-15"></td>
+                            <td class="not-edit" id="op-2-falta-15"></td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer class="footer-fixed">
+        <div class="message message-intro" id="message-intro-id">
+            <p>Developed by Leonardo Mantovani</p>
+            <div class="">
+                <div class="contato-intro">
+                    <h2>Contato:</h2>
+                </div>
+                <div class="contato-link">
+                    <a href="https://www.github.com/LeonardoHMS/" target="_blank"><i
+                            class="fa-brands fa-github fa-2x"></i></a>
+                    <a href="https://www.linkedin.com/in/leonardohms/" target="_blank"><i
+                            class="fa-brands fa-linkedin fa-2x"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=14998433191&text=Oi%20Leonardo" target="_blank"><i
+                            class="fa-brands fa-whatsapp fa-2x"></i></a>
+                    <a href="https://leonardohms.github.io" target="_blank"><i
+                            class="fa-regular fa-address-card fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script src="static/js/script.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
+    integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $('#input-setup').mask('00:00:00');
+    $('#input-start').mask('00:00:00');
+    $('#input-end').mask('00:00:00');
+</script>
+
+</html>
